@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "therapists": "Therapists",
+    "myAppointments": "My Sessions",
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "bookAppointment": "Start today",
+    "dashboard": "Dashboard",
+    "myPanel": "My Panel",
+    "schedules": "Schedule",
+    "myAccount": "Account"
+  },
+  "account": {
+    "public": "Public",
+    "university_pe": "Student",
+    "university_international": "International",
+    "corporate": "Corporate",
+    "preferentialRate": "special rate"
+  },
+  "footer": {
+    "description": "Mental health support by young people, for young people. Accessible, professional, confidential.",
+    "links": "Links",
+    "contact": "Contact",
+    "termsAndConditions": "Terms",
+    "copyright": "© {{year}} Mente Livre",
+    "tagline": "By young people, for young people."
+  },
+  "language": {
+    "es": "Español",
+    "en": "English",
+    "select": "Language"
+  },
+  "loading": "Loading...",
+  "error": "Error",
+  "session": "session",
+  "perSession": "/ session"
+}

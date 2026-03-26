@@ -1,0 +1,65 @@
+{
+  "hero": {
+    "title": "De jóvenes para jóvenes",
+    "subtitle": "Apoyo psicológico real. Sin vueltas.",
+    "cta": "Empieza hoy"
+  },
+  "therapists": {
+    "title": "Habla con alguien que sí te entienda",
+    "subtitle": "Psicólogos jóvenes, supervisados y listos para ti.",
+    "viewAll": "Ver todos",
+    "noResults": "Sin resultados para esos filtros.",
+    "noAvailable": "Pronto habrá disponibilidad."
+  },
+  "filters": {
+    "filterBy": "Día",
+    "day": "Día",
+    "allDays": "Todos",
+    "time": "Horario",
+    "allTimes": "Cualquier hora",
+    "morning": "Mañana",
+    "afternoon": "Tarde",
+    "evening": "Noche",
+    "clear": "Limpiar"
+  },
+  "days": {
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo"
+  },
+  "features": {
+    "title": "¿Por qué nosotros?",
+    "confidentiality": {
+      "title": "100% Privado",
+      "description": "Lo que hables aquí, aquí se queda."
+    },
+    "team": {
+      "title": "Jóvenes preparados",
+      "description": "Psicólogos en formación con supervisión profesional."
+    },
+    "personalized": {
+      "title": "A tu ritmo",
+      "description": "Sesiones adaptadas a ti. Sin presión."
+    }
+  },
+  "cta": {
+    "title": "Un paso basta",
+    "subtitle": "No es complicado. No estás solo. Puedes empezar hoy.",
+    "button": "Empieza hoy",
+    "loginFirst": "Inicia sesión primero"
+  },
+  "universityBanner": {
+    "title": "¿Estudias en la U?",
+    "description": "Usa tu correo institucional y paga menos.",
+    "slogan": "De jóvenes para jóvenes.",
+    "cta": "Empieza hoy"
+  },
+  "backers": {
+    "title": "Nos respaldan",
+    "subtitle": ""
+  }
+}

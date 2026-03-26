@@ -1,0 +1,41 @@
+{
+  "title": "Psicólogos",
+  "subtitle": "Encuentra a tu match",
+  "pageTitle": "Nuestros Psicólogos",
+  "pageSubtitle": "Encuentra al profesional ideal para acompañarte en tu proceso terapéutico",
+  "searchPlaceholder": "Buscar por nombre o especialidad...",
+  "search": "Buscar...",
+  "filters": {
+    "filterBy": "Filtrar por disponibilidad",
+    "day": "Día",
+    "dayPlaceholder": "Día de la semana",
+    "allDays": "Todos los días",
+    "time": "Horario",
+    "timePlaceholder": "Horario",
+    "allTimes": "Cualquier horario",
+    "clear": "Limpiar filtros"
+  },
+  "card": {
+    "book": "Empieza hoy",
+    "patientsOnly": "Solo pacientes",
+    "nextAvailable": "Próximo disponible",
+    "preferentialRate": "Precio especial",
+    "perSession": "/ sesión"
+  },
+  "days": {
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo"
+  },
+  "timeRanges": {
+    "morning": "Mañana",
+    "afternoon": "Tarde",
+    "evening": "Noche"
+  },
+  "noResults": "No se encontraron psicólogos con esos criterios de búsqueda.",
+  "noAvailable": "No hay psicólogos disponibles en este momento."
+}

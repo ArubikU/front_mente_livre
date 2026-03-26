@@ -1,0 +1,95 @@
+{
+    "welcome": {
+        "greeting": "Hello, {{name}}!",
+        "subtitle": "Welcome to your personal dashboard"
+    },
+    "actions": {
+        "book_appointment": "Book Appointment",
+        "sign_out": "Sign Out",
+        "view_site": "View Site",
+        "cancel": "Cancel",
+        "pay": "Pay",
+        "confirm_payment": "Confirm Payment",
+        "reject": "Reject"
+    },
+    "sidebar": {
+        "appointments": "Appointments",
+        "profile": "Profile"
+    },
+    "profile": {
+        "member_since": "Member since {{date}}"
+    },
+    "user": {
+        "hello": "Hello, {{name}}!",
+        "bookAppointment": "Book Appointment",
+        "logout": "Logout",
+        "logoutSuccess": "Logged out",
+        "logoutDesc": "You have successfully logged out.",
+        "myAppointments": "My Appointments",
+        "appointmentsDesc": "History and status of your scheduled appointments",
+        "therapist": "Psychologist",
+        "reason": "Reason",
+        "contact": "Contact",
+        "pay": "Pay",
+        "viewPayment": "View Payment",
+        "cancel": "Cancel",
+        "cancelDialogTitle": "Cancel this appointment?",
+        "cancelDialogDesc": "This action cannot be undone. The appointment with {{therapist}} for {{date}} will be cancelled.",
+        "keep": "No, keep it",
+        "confirmCancel": "Yes, cancel appointment",
+        "noAppointments": "You have no scheduled appointments",
+        "bookFirst": "Book your first appointment with one of our psychologists",
+        "viewTherapists": "View available psychologists",
+        "cancelSuccess": "Appointment cancelled",
+        "cancelSuccessDesc": "Your appointment has been successfully cancelled.",
+        "cancelError": "Error",
+        "cancelErrorDesc": "Could not cancel the appointment. Please check that you are authenticated.",
+        "status": {
+            "pending_payment": "Pending Payment",
+            "payment_review": "Payment Review",
+            "confirmed": "Confirmed",
+            "completed": "Completed",
+            "cancelled": "Cancelled",
+            "pending": "Pending"
+        }
+    },
+    "sections": {
+        "my_appointments": "My Appointments",
+        "my_appointments_subtitle": "History and status of your scheduled appointments",
+        "pending_payments": "Payment Review",
+        "pending_payments_subtitle": "Appointments requiring payment confirmation",
+        "upcoming_appointments": "Upcoming Appointments",
+        "upcoming_appointments_subtitle": "Your upcoming scheduled appointments",
+        "availability_management": "Availability Management",
+        "availability_management_subtitle": "Configure schedules for each psychologist"
+    },
+    "cards": {
+        "therapist": "Psychologist",
+        "patient": "Patient",
+        "reason": "Reason",
+        "amount": "Amount",
+        "no_appointments": "You have no scheduled appointments yet",
+        "no_pending_payments": "No payments pending review",
+        "no_upcoming_appointments": "No upcoming appointments scheduled"
+    },
+    "status": {
+        "pending_payment": "Payment Pending",
+        "payment_review": "Payment Review",
+        "confirmed": "Confirmed",
+        "completed": "Completed",
+        "cancelled": "Cancelled",
+        "pending": "Pending"
+    },
+    "roles": {
+        "admin": "Administrator",
+        "therapist": "Psychologist",
+        "user": "User",
+        "no_role": "No Role"
+    },
+    "modals": {
+        "cancel_title": "Cancel this appointment?",
+        "cancel_desc": "This action cannot be undone. {{name}}'s appointment will be cancelled.",
+        "cancel_confirm": "Yes, cancel",
+        "keep": "No, keep"
+    }
+}

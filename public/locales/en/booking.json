@@ -1,0 +1,68 @@
+{
+  "title": "Book your appointment",
+  "description": "Book your psychological counseling session with {{name}}. Specialist in {{specialty}}.",
+  "selectDate": "Choose date",
+  "selectTime": "Choose time",
+  "noSlots": "No slots available",
+  "yourInfo": "Your information",
+  "reason": "What would you like to work on?",
+  "reasonPlaceholder": "Briefly tell us...",
+  "summary": "Summary",
+  "date": "Date",
+  "time": "Time",
+  "therapist": "Psychologist",
+  "price": "Price",
+  "confirm": "Confirm",
+  "continue": "Continue with my booking",
+  "back": "Back",
+  "almostReady": "Almost ready!",
+  "completeReservation": "To complete your reservation, please log in or create an account.",
+  "loginToBook": "Log in to Book",
+  "termsAcceptance": "By continuing, you accept our terms and conditions",
+  "greeting": "Hello, {{name}}! 👋",
+  "aboutToBook": "You are about to book your appointment for <1>{{date}}</1> at <3>{{time}}</3>",
+  "completeDetails": "Complete your details",
+  "verifyingPayment": "Your payment will be verified and we will contact you to confirm",
+  "therapistNotFound": "Therapist not found.",
+  "loading": "Loading...",
+  "duration": "Duration",
+  "modality": "Modality",
+  "modalityValue": "Virtual",
+  "studentRate": "Student rate",
+  "savings": "You save S/ {{amount}}",
+  "calendar": {
+    "selectDate": "Select a date first",
+    "noSlotsDate": "No slots available for this date.",
+    "noSlotsGeneral": "No slots available at this moment.",
+    "therapistNoSchedule": "The therapist has no schedule configured.",
+    "slotsBusy": "All slots are taken or do not meet the minimum advance notice rule (10 hours)."
+  },
+  "form": {
+    "name": "Full Name",
+    "phone": "Phone",
+    "email": "Email",
+    "consentLabel": "I accept the <1>Terms and Conditions</1> and authorize that for clinical supervision and service improvement purposes, some sessions may be observed live or recorded. Recording will only be done with your consent, will be confidential, exclusively for professional supervision and quality management, and will not be kept for more than 5 calendar days.",
+    "consentTooltip": "We have a team of senior supervisors to support the care provided by our specialists.",
+    "promoCode": "Do you have a promo code?"
+  },
+  "restricted": {
+    "title": "Restricted Access",
+    "description": "This action is only available for patients. As a {{role}}, you cannot book appointments from this view.",
+    "viewTherapists": "View Therapists",
+    "goToDashboard": "Go to Dashboard"
+  },
+  "errors": {
+    "nameRequired": "Name required",
+    "phoneRequired": "Phone required",
+    "reasonRequired": "Reason required",
+    "consentRequired": "Consent required",
+    "consentDesc": "You must accept the Terms and Conditions to continue.",
+    "slotTaken": "Sorry, this slot has just been booked",
+    "slotTakenDesc": "Another user booked this slot while you were completing the form. Please choose another available slot.",
+    "minAdvance": "Slot not available",
+    "minAdvanceDesc": "Appointments must be booked at least 10 hours in advance. Please choose another slot."
+  },
+  "success": {
+    "appointmentCreated": "Appointment created successfully"
+  }
+}

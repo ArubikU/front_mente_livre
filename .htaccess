@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+
+  # Sirve archivos estáticos existentes
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Redirige el resto a index.html (SPA)
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Manejo básico de caché para assets
+<FilesMatch "\.(js|css|png|jpg|jpeg|gif|svg|ico|woff2?)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>

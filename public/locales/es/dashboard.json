@@ -1,0 +1,95 @@
+{
+    "welcome": {
+        "greeting": "¡Hola, {{name}}!",
+        "subtitle": "Bienvenido a tu panel personal"
+    },
+    "actions": {
+        "book_appointment": "Agendar cita",
+        "sign_out": "Cerrar sesión",
+        "view_site": "Ver Sitio",
+        "cancel": "Cancelar",
+        "pay": "Pagar",
+        "confirm_payment": "Confirmar Pago",
+        "reject": "Rechazar"
+    },
+    "sidebar": {
+        "appointments": "Citas",
+        "profile": "Perfil"
+    },
+    "profile": {
+        "member_since": "Miembro desde {{date}}"
+    },
+    "user": {
+        "hello": "¡Hola, {{name}}!",
+        "bookAppointment": "Agendar cita",
+        "logout": "Cerrar sesión",
+        "logoutSuccess": "Sesión cerrada",
+        "logoutDesc": "Has cerrado sesión correctamente.",
+        "myAppointments": "Mis Citas",
+        "appointmentsDesc": "Historial y estado de tus citas agendadas",
+        "therapist": "Psicólogo",
+        "reason": "Motivo",
+        "contact": "Contacto",
+        "pay": "Pagar",
+        "viewPayment": "Ver pago",
+        "cancel": "Cancelar",
+        "cancelDialogTitle": "¿Cancelar esta cita?",
+        "cancelDialogDesc": "Esta acción no se puede deshacer. La cita con {{therapist}} para el {{date}} será cancelada.",
+        "keep": "No, mantener",
+        "confirmCancel": "Sí, cancelar cita",
+        "noAppointments": "No tienes citas agendadas",
+        "bookFirst": "Agenda tu primera cita con uno de nuestros psicólogos",
+        "viewTherapists": "Ver psicólogos disponibles",
+        "cancelSuccess": "Cita cancelada",
+        "cancelSuccessDesc": "Tu cita ha sido cancelada exitosamente.",
+        "cancelError": "Error",
+        "cancelErrorDesc": "No se pudo cancelar la cita. Por favor, verifica que estés autenticado.",
+        "status": {
+            "pending_payment": "Pendiente de pago",
+            "payment_review": "Pago en revisión",
+            "confirmed": "Confirmada",
+            "completed": "Completada",
+            "cancelled": "Cancelada",
+            "pending": "Pendiente"
+        }
+    },
+    "sections": {
+        "my_appointments": "Mis Citas",
+        "my_appointments_subtitle": "Historial y estado de tus citas agendadas",
+        "pending_payments": "Pagos en Revisión",
+        "pending_payments_subtitle": "Citas que requieren confirmación de pago",
+        "upcoming_appointments": "Próximas Citas",
+        "upcoming_appointments_subtitle": "Las próximas citas programadas",
+        "availability_management": "Gestión de Disponibilidad",
+        "availability_management_subtitle": "Configura los horarios de cada psicólogo"
+    },
+    "cards": {
+        "therapist": "Psicólogo",
+        "patient": "Paciente",
+        "reason": "Motivo",
+        "amount": "Monto",
+        "no_appointments": "No tienes citas agendadas aún",
+        "no_pending_payments": "No hay pagos pendientes de revisión",
+        "no_upcoming_appointments": "No hay citas programadas próximamente"
+    },
+    "status": {
+        "pending_payment": "Pendiente de pago",
+        "payment_review": "Pago en revisión",
+        "confirmed": "Confirmada",
+        "completed": "Completada",
+        "cancelled": "Cancelada",
+        "pending": "Pendiente"
+    },
+    "roles": {
+        "admin": "Administrador",
+        "therapist": "Psicólogo",
+        "user": "Usuario",
+        "no_role": "Sin rol"
+    },
+    "modals": {
+        "cancel_title": "¿Cancelar esta cita?",
+        "cancel_desc": "Esta acción no se puede deshacer. La cita de {{name}} será cancelada.",
+        "cancel_confirm": "Sí, cancelar",
+        "keep": "No, mantener"
+    }
+}

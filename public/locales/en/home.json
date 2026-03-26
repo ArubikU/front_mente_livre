@@ -1,0 +1,65 @@
+{
+  "hero": {
+    "title": "By young people, for young people",
+    "subtitle": "Real mental health support. No BS.",
+    "cta": "Start today"
+  },
+  "therapists": {
+    "title": "Talk to someone who gets you",
+    "subtitle": "Young psychologists, supervised and ready for you.",
+    "viewAll": "View all",
+    "noResults": "No results for those filters.",
+    "noAvailable": "Coming soon."
+  },
+  "filters": {
+    "filterBy": "Day",
+    "day": "Day",
+    "allDays": "All",
+    "time": "Time",
+    "allTimes": "Any time",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "evening": "Evening",
+    "clear": "Clear"
+  },
+  "days": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
+  "features": {
+    "title": "Why us?",
+    "confidentiality": {
+      "title": "100% Private",
+      "description": "What you share here, stays here."
+    },
+    "team": {
+      "title": "Young & ready",
+      "description": "Supervised psych students with real training."
+    },
+    "personalized": {
+      "title": "Your pace",
+      "description": "Sessions tailored to you. No pressure."
+    }
+  },
+  "cta": {
+    "title": "One step is enough",
+    "subtitle": "It's not complicated. You're not alone. Start today.",
+    "button": "Start today",
+    "loginFirst": "Sign in first"
+  },
+  "universityBanner": {
+    "title": "In college?",
+    "description": "Use your student email and pay less.",
+    "slogan": "By young people, for young people.",
+    "cta": "Start today"
+  },
+  "backers": {
+    "title": "Backed by",
+    "subtitle": ""
+  }
+}

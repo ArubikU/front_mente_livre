@@ -1,0 +1,41 @@
+{
+  "title": "Therapists",
+  "subtitle": "Find your match",
+  "pageTitle": "Our Psychologists",
+  "pageSubtitle": "Find the right professional to support you in your therapeutic process",
+  "searchPlaceholder": "Search by name or specialty...",
+  "search": "Search...",
+  "filters": {
+    "filterBy": "Filter by availability",
+    "day": "Day",
+    "dayPlaceholder": "Day of the week",
+    "allDays": "All days",
+    "time": "Time",
+    "timePlaceholder": "Schedule",
+    "allTimes": "Any schedule",
+    "clear": "Clear filters"
+  },
+  "card": {
+    "book": "Start today",
+    "patientsOnly": "Patients only",
+    "nextAvailable": "Next available",
+    "preferentialRate": "Special rate",
+    "perSession": "/ session"
+  },
+  "days": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
+  "timeRanges": {
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "evening": "Evening"
+  },
+  "noResults": "No psychologists found with those search criteria.",
+  "noAvailable": "No psychologists available at this time."
+}

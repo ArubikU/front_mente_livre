@@ -1,0 +1,494 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Mente Livre API",
+        "description": "API REST para el sistema de gestión de terapeutas y citas de Mente Livre",
+        "contact": {
+            "name": "Mente Livre",
+            "email": "mentelivre.pe@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://backend.mentelivre.org/",
+            "description": "Servidor de Desarrollo Local"
+        }
+    ],
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Iniciar sesión",
+                "description": "Autenticar usuario y obtener token JWT",
+                "operationId": "login",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "admin@mentelivre.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login exitoso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "token": {
+                                                    "type": "string"
+                                                },
+                                                "user": {
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Credenciales inválidas"
+                    }
+                }
+            }
+        },
+        "/auth/refresh": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Refrescar token",
+                "description": "Obtener un nuevo token usando un refresh token",
+                "operationId": "refreshToken",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "refresh_token"
+                                ],
+                                "properties": {
+                                    "refresh_token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Token refrescado exitosamente"
+                    },
+                    "401": {
+                        "description": "Token inválido"
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Cerrar sesión",
+                "description": "Invalidar el token actual",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Logout exitoso"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/therapists": {
+            "get": {
+                "tags": [
+                    "Therapists"
+                ],
+                "summary": "Obtener todos los terapeutas activos",
+                "operationId": "getTherapists",
+                "responses": {
+                    "200": {
+                        "description": "Lista de terapeutas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Therapist"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Therapists"
+                ],
+                "summary": "Crear un nuevo terapeuta",
+                "operationId": "createTherapist",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TherapistCreate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Terapeuta creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "format": "uuid"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/therapists/{id}": {
+            "get": {
+                "tags": [
+                    "Therapists"
+                ],
+                "summary": "Obtener un terapeuta por ID",
+                "operationId": "getTherapist",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del terapeuta (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Terapeuta encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Therapist"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Terapeuta no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Therapists"
+                ],
+                "summary": "Actualizar un terapeuta",
+                "operationId": "updateTherapist",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TherapistUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Terapeuta actualizado"
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Therapist": {
+                "required": [
+                    "id",
+                    "name",
+                    "university",
+                    "academic_cycle",
+                    "hourly_rate"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Dr. Juan Pérez"
+                    },
+                    "university": {
+                        "type": "string",
+                        "example": "Universidad de Lima"
+                    },
+                    "academic_cycle": {
+                        "type": "string",
+                        "example": "10mo ciclo"
+                    },
+                    "age": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "years_experience": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "professional_level": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "role_title": {
+                        "type": "string",
+                        "example": "Psicólogo/a"
+                    },
+                    "specialty": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "therapeutic_approach": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "short_description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "modality": {
+                        "type": "string",
+                        "example": "Online"
+                    },
+                    "hourly_rate": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 40
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "experience_topics": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "photos": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "photo_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "profile",
+                                        "friendly"
+                                    ]
+                                },
+                                "photo_url": {
+                                    "type": "string"
+                                },
+                                "photo_position": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "pricing": {
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "type": "object"
+            },
+            "TherapistCreate": {
+                "required": [
+                    "name",
+                    "university",
+                    "academic_cycle",
+                    "hourly_rate"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "university": {
+                        "type": "string"
+                    },
+                    "academic_cycle": {
+                        "type": "string"
+                    },
+                    "age": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "years_experience": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "professional_level": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "specialty": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "hourly_rate": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "experience_topics": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "TherapistUpdate": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "university": {
+                        "type": "string"
+                    },
+                    "academic_cycle": {
+                        "type": "string"
+                    },
+                    "age": {
+                        "type": "integer"
+                    },
+                    "hourly_rate": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Token JWT de autenticación. Incluir en el header: Authorization: Bearer {token}",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Endpoints de autenticación"
+        },
+        {
+            "name": "Therapists",
+            "description": "Endpoints para gestión de terapeutas"
+        }
+    ]
+}

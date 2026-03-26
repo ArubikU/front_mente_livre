@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "therapists": "Psicólogos",
+    "myAppointments": "Mis Citas",
+    "login": "Entrar",
+    "logout": "Salir",
+    "bookAppointment": "Empieza hoy",
+    "dashboard": "Dashboard",
+    "myPanel": "Mi Panel",
+    "schedules": "Horarios",
+    "myAccount": "Mi cuenta"
+  },
+  "account": {
+    "public": "Público",
+    "university_pe": "Cuenta universitaria",
+    "university_international": "Internacional",
+    "corporate": "Corporativo",
+    "preferentialRate": "tarifa preferencial"
+  },
+  "footer": {
+    "description": "Apoyo psicológico de jóvenes para jóvenes. Accesible, profesional y confidencial.",
+    "links": "Enlaces",
+    "contact": "Contacto",
+    "termsAndConditions": "Términos",
+    "copyright": "© {{year}} Mente Livre",
+    "tagline": "De jóvenes para jóvenes."
+  },
+  "language": {
+    "es": "Español",
+    "en": "English",
+    "select": "Idioma"
+  },
+  "loading": "Cargando...",
+  "error": "Error",
+  "session": "sesión",
+  "perSession": "/ sesión"
+}

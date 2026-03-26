@@ -1,0 +1,68 @@
+{
+  "title": "Agenda tu cita",
+  "description": "Agenda tu sesión de consejería psicológica con {{name}}. Especialista en {{specialty}}.",
+  "selectDate": "Elige fecha",
+  "selectTime": "Elige hora",
+  "noSlots": "Sin horarios disponibles",
+  "yourInfo": "Tus datos",
+  "reason": "¿Qué te gustaría trabajar?",
+  "reasonPlaceholder": "Cuéntanos brevemente...",
+  "summary": "Resumen",
+  "date": "Fecha",
+  "time": "Hora",
+  "therapist": "Psicólogo",
+  "price": "Precio",
+  "confirm": "Confirmar",
+  "continue": "Continuar con mi reserva",
+  "back": "Volver",
+  "almostReady": "¡Casi listo!",
+  "completeReservation": "Para completar tu reserva, por favor inicia sesión o crea una cuenta.",
+  "loginToBook": "Iniciar Sesión para Reservar",
+  "termsAcceptance": "Al continuar, aceptas nuestros términos y condiciones",
+  "greeting": "¡Hola, {{name}}! 👋",
+  "aboutToBook": "Estás a punto de agendar tu cita para el <1>{{date}}</1> a las <3>{{time}}</3>",
+  "completeDetails": "Completa tus datos",
+  "verifyingPayment": "Tu pago será verificado y te contactaremos para confirmar",
+  "therapistNotFound": "Psicólogo no encontrado.",
+  "loading": "Cargando...",
+  "duration": "Duración",
+  "modality": "Modalidad",
+  "modalityValue": "Virtual",
+  "studentRate": "Tarifa estudiante",
+  "savings": "Ahorras S/ {{amount}}",
+  "calendar": {
+    "selectDate": "Selecciona una fecha primero",
+    "noSlotsDate": "No hay horarios disponibles para esta fecha.",
+    "noSlotsGeneral": "No hay horarios disponibles en este momento.",
+    "therapistNoSchedule": "El terapeuta no tiene horarios configurados.",
+    "slotsBusy": "Todos los horarios están ocupados o no cumplen con la regla de anticipación mínima (10 horas)."
+  },
+  "form": {
+    "name": "Nombre completo",
+    "phone": "Teléfono",
+    "email": "Email",
+    "consentLabel": "Acepto los <1>Términos y Condiciones</1> y autorizo que con fines de supervisión clínica y mejora del servicio, algunas sesiones podrán ser observadas en vivo o grabadas. La grabación se realizará únicamente con tu consentimiento, será confidencial, de uso exclusivo para supervisión profesional y gestión de calidad y no se conservará por más de 5 días calendario.",
+    "consentTooltip": "Contamos con un equipo de supervisores senior para respaldar la atención de nuestros especialistas.",
+    "promoCode": "¿Tienes un código promocional?"
+  },
+  "restricted": {
+    "title": "Acceso restringido",
+    "description": "Esta acción solo está disponible para pacientes. Como {{role}}, no puedes agendar citas desde esta vista.",
+    "viewTherapists": "Ver Terapeutas",
+    "goToDashboard": "Ir al Panel"
+  },
+  "errors": {
+    "nameRequired": "Nombre requerido",
+    "phoneRequired": "Teléfono requerido",
+    "reasonRequired": "Motivo requerido",
+    "consentRequired": "Consentimiento requerido",
+    "consentDesc": "Debes aceptar los Términos y Condiciones para continuar.",
+    "slotTaken": "Lo sentimos, este horario acaba de ser reservado",
+    "slotTakenDesc": "Otro usuario reservó este horario mientras completabas el formulario. Por favor elige otro horario disponible.",
+    "minAdvance": "Horario no disponible",
+    "minAdvanceDesc": "Por organización del servicio, las citas se agendan con un mínimo de 10 horas de anticipación. Por favor elige otro horario."
+  },
+  "success": {
+    "appointmentCreated": "Cita creada con éxito"
+  }
+}
