@@ -15,8 +15,7 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'DM Sans',
-  				'Plus Jakarta Sans',
+  				'Nunito',
   				'ui-sans-serif',
   				'system-ui',
   				'sans-serif',
@@ -24,6 +23,12 @@ export default {
   				'Segoe UI Emoji',
   				'Segoe UI Symbol',
   				'Noto Color Emoji'
+  			],
+  				display: [
+  				'Baloo 2',
+  				'ui-sans-serif',
+  				'system-ui',
+  				'sans-serif'
   			],
   			serif: [
   				'ui-serif',
