@@ -84,17 +84,17 @@ export default function BookAppointment() {
   } | null>(null);
   const { recordUsage } = usePromoCode();
 
-  // Solo pacientes (usuarios sin rol admin/therapist) pueden agendar
+  // Solo terapeutas no pueden agendar (admins sí pueden, en nombre de un paciente)
   const isStaff = userRole === 'admin' || userRole === 'therapist';
   const isAdmin = userRole === 'admin';
 
 
-  // Pre-fill name if user is logged in
+  // Pre-fill name if user is logged in (but not for admin — they're booking for a patient)
   useEffect(() => {
-    if (profile?.full_name) {
+    if (profile?.full_name && !isAdmin) {
       setFormData(prev => ({ ...prev, name: profile.full_name || '' }));
     }
-  }, [profile]);
+  }, [profile, isAdmin]);
 
   const { data: therapist, isLoading: loadingTherapist } = useQuery({
     queryKey: ['therapist', therapistId],
@@ -273,8 +273,10 @@ export default function BookAppointment() {
         throw new Error('SLOT_TAKEN');
       }
 
-      // Get current user email
-      const patientEmail = user?.email || formData.email.trim() || 'sin-email@mentelivre.com';
+      // Get current user email (admin books on behalf of patient, so use form email)
+      const patientEmail = isAdmin
+        ? (formData.email.trim() || 'sin-email@mentelivre.com')
+        : (user?.email || formData.email.trim() || 'sin-email@mentelivre.com');
 
       // Calcular precio final usando getDisplayPrice
       const priceInfo = therapist ? getDisplayPrice(therapist, accountType) : { displayPrice: 0 };
@@ -288,13 +290,13 @@ export default function BookAppointment() {
 
       const appointmentData: Partial<BackendAppointment> & { original_price: number; final_price: number; discount_applied?: number; promo_code_id?: string; patient_package_id?: string; new_package_id?: string } = {
         therapist_id: therapistId,
-        user_id: user?.id, // Add user_id if logged in
+        user_id: isAdmin ? undefined : user?.id, // Admin books for patient, don't link admin's account
         patient_name: formData.name.trim(),
         patient_email: patientEmail,
         appointment_date: appointmentDate,
         start_time: startTime,
         end_time: endTime,
-        status: 'pending_payment' as const,
+        status: isAdmin ? 'confirmed' as const : 'pending_payment' as const,
         original_price: originalPrice,
         final_price: finalPrice,
       };
@@ -365,7 +367,9 @@ export default function BookAppointment() {
     onSuccess: async (data) => {
       // Registrar uso del código promocional si se aplicó uno
       if (appliedPromo) {
-        const patientEmail = user?.email || formData.email.trim() || 'sin-email@mentelivre.com';
+        const patientEmail = isAdmin
+          ? (formData.email.trim() || 'sin-email@mentelivre.com')
+          : (user?.email || formData.email.trim() || 'sin-email@mentelivre.com');
         await recordUsage(
           appliedPromo.promoCodeId,
           patientEmail,
@@ -376,7 +380,11 @@ export default function BookAppointment() {
       }
       queryClient.invalidateQueries({ queryKey: ['therapist-all-appointments'] });
       queryClient.invalidateQueries({ queryKey: ['therapist-all-appointments', therapistId] });
-      navigate(`/pago/${data.id}`);
+      if (isAdmin) {
+        navigate('/dashboard');
+      } else {
+        navigate(`/pago/${data.id}`);
+      }
     },
     onError: (error: Error) => {
       if (error.message === 'MIN_ADVANCE_NOT_MET') {
@@ -549,6 +557,11 @@ export default function BookAppointment() {
       return;
     }
 
+    if (isAdmin && !formData.email.trim()) {
+      toast({ title: 'Email del paciente requerido', description: 'Ingresa el email del paciente para agendar.', variant: 'destructive' });
+      return;
+    }
+
     if (!formData.phone.trim()) {
       toast({ title: t('booking:errors.phoneRequired'), description: t('auth:errors.requiredDesc'), variant: 'destructive' });
       return;
@@ -568,8 +581,8 @@ export default function BookAppointment() {
   };
 
 
-  // Block staff from booking (admin/therapist)
-  if (!authLoading && isStaff) {
+  // Block therapists from booking (admins can book on behalf of patients)
+  if (!authLoading && isStaff && !isAdmin) {
     return (
       <PublicLayout>
         <div className="container py-20">
@@ -920,15 +933,29 @@ export default function BookAppointment() {
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-4">
-                      {/* Only show name field if not logged in */}
-                      {!user && (
+                      {/* Show name/email fields for guests or admin (booking on behalf of patient) */}
+                      {(!user || isAdmin) && (
                         <div className="space-y-2">
-                          <Label htmlFor="name">{t('booking:form.name')} *</Label>
+                          <Label htmlFor="name">{isAdmin ? 'Nombre del paciente' : t('booking:form.name')} *</Label>
                           <Input
                             id="name"
                             value={formData.name}
                             onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                             placeholder={t('booking:form.name')}
+                            required
+                          />
+                        </div>
+                      )}
+
+                      {isAdmin && (
+                        <div className="space-y-2">
+                          <Label htmlFor="email">Email del paciente *</Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                            placeholder="paciente@email.com"
                             required
                           />
                         </div>
