@@ -27,7 +27,7 @@ export function TherapistCard({
     const availability = getAvailabilityStatus(schedules || []);
     const initials = therapist.name!.split(' ').map(n => n[0]).join('').slice(0, 2);
 
-    const canBook = !userRole || (userRole !== 'admin' && userRole !== 'therapist');
+    const canBook = !userRole || userRole !== 'therapist'; // Admins can book on behalf of patients
 
     const pricingRecord = (therapist as { pricing?: Record<string, { price?: number }> }).pricing;
     const regularPrice: number = pricingRecord?.public?.price != null
