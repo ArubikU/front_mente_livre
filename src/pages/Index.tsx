@@ -161,7 +161,7 @@ export default function Index() {
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold mb-5 sm:mb-6 leading-tight tracking-tight text-foreground">
-                PSICOLOGIA PARA TODOS
+                {t('home:hero.title')}
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
