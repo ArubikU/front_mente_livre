@@ -1,12 +1,8 @@
 {
   "hero": {
-    "title": "¿Te cuesta estudiar, concentrarte o manejar tus problemas personales?",
-    "subtitle": "Conecta con psicólogos y recibe terapia accesible, pensada para estudiantes como tú.",
-    "cta": "Agenda tu primera sesión",
-    "ctaSecondary": "Ver psicólogos disponibles",
-    "trust1": "Tarifas especiales para estudiantes",
-    "trust2": "Atención online, sin complicaciones",
-    "trust3": "Psicólogos con experiencia"
+    "title": "De jóvenes para jóvenes",
+    "subtitle": "Apoyo psicológico real. Sin vueltas.",
+    "cta": "Empieza hoy"
   },
   "therapists": {
     "title": "Habla con alguien que sí te entienda",
