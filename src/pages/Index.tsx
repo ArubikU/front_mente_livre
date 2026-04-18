@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Shield, Heart, Users, Clock, Filter, Sparkles } from 'lucide-react';
+import { ArrowRight, Shield, Heart, Users, Clock, Filter, Sparkles, CheckCircle2 } from 'lucide-react';
+import heroIllustration from '@/assets/hero-illustration.png';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useMemo, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
@@ -139,42 +140,94 @@ export default function Index() {
     return `${label} (${config.start} - ${config.end})`;
   };
   return <PublicLayout>
-      {/* Hero Section - Gradiente azul vibrante estilo Monterrico */}
-      <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden gradient-hero">
-        {/* Patrón decorativo */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 right-10 w-72 h-72 bg-white/30 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
+      {/* Hero Section */}
+      <section className="relative min-h-[88vh] flex items-center py-16 sm:py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-teal-50/30">
+        {/* Soft decorative blobs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-teal-100/40 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-50/30 rounded-full blur-3xl" />
         </div>
-        
+
         <div className="container relative z-10 px-4 sm:px-6">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 sm:mb-6 leading-tight tracking-tight text-white">
-              {t('home:hero.title')}
-            </h1>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-              {t('home:hero.subtitle')}
-            </p>
+            {/* Text column */}
+            <div className="text-center lg:text-left order-2 lg:order-1">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-6 border border-primary/15">
+                <Sparkles className="h-3.5 w-3.5" />
+                Terapia pensada para estudiantes
+              </div>
 
-            <Link to="/terapeutas">
-              <Button size="lg" variant="outline" className="gap-2 bg-white text-primary border-white hover:bg-white/90 hover:text-primary shadow-lg">
-                {t('home:hero.cta')}
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-            </Link>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold mb-5 sm:mb-6 leading-tight tracking-tight text-foreground">
+                {t('home:hero.title')}
+              </h1>
+
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                {t('home:hero.subtitle')}
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8">
+                <Link to="/auth" className="w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-xl shadow-primary transition-all duration-200 hover:-translate-y-0.5 hover:shadow-elevated"
+                  >
+                    {t('home:hero.cta')}
+                    <ArrowRight className="h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link to="/terapeutas" className="w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-xl border-primary/30 text-primary hover:bg-primary/5 hover:border-primary/50 transition-all duration-200"
+                  >
+                    {t('home:hero.ctaSecondary')}
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Microcopy trust signals */}
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2.5 justify-center lg:justify-start">
+                {[
+                  t('home:hero.trust1'),
+                  t('home:hero.trust2'),
+                  t('home:hero.trust3'),
+                ].map((item) => (
+                  <span key={item} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-teal-500 flex-shrink-0" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Illustration column */}
+            <div className="flex justify-center items-center order-1 lg:order-2">
+              <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-teal-400/10 rounded-3xl blur-2xl scale-95" />
+                <img
+                  src={heroIllustration}
+                  alt="Terapia online para estudiantes"
+                  className="relative w-full h-auto object-contain drop-shadow-xl"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Wave bottom transition */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
-          <svg 
-            className="relative block w-full h-16 sm:h-20 lg:h-24" 
-            viewBox="0 0 1200 120" 
+          <svg
+            className="relative block w-full h-16 sm:h-20 lg:h-24"
+            viewBox="0 0 1200 120"
             preserveAspectRatio="none"
           >
-            <path 
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.11,141.23,111.31,221.89,91.17,299.52,71.84,257.95,68.16,321.39,56.44Z" 
+            <path
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.11,141.23,111.31,221.89,91.17,299.52,71.84,257.95,68.16,321.39,56.44Z"
               className="fill-background"
             />
           </svg>
