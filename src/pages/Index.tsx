@@ -150,7 +150,7 @@ export default function Index() {
         <div className="container relative z-10 px-4 sm:px-6">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 sm:mb-6 leading-tight tracking-tight text-white">
-              Psicología para todos
+              {t('home:hero.title')}
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
