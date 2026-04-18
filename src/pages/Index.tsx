@@ -141,7 +141,7 @@ export default function Index() {
   };
   return <PublicLayout>
       {/* Hero Section */}
-      <section className="relative min-h-[88vh] flex items-center py-16 sm:py-20 lg:py-24 overflow-hidden bg-red-600">
+      <section className="relative min-h-[88vh] flex items-center py-16 sm:py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-teal-50/30">
         {/* Soft decorative blobs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-3xl" />
@@ -175,7 +175,7 @@ export default function Index() {
                     size="lg"
                     className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-xl shadow-primary transition-all duration-200 hover:-translate-y-0.5 hover:shadow-elevated"
                   >
-                    TEST DEPLOY FUNCIONANDO
+                    {t('home:hero.cta')}
                     <ArrowRight className="h-5 w-5" />
                   </Button>
                 </Link>
