@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Shield, Heart, Users, Clock, Filter, Sparkles, User, GraduationCap } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { ArrowRight, Shield, Heart, Users, Clock, Filter, Sparkles } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useMemo, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
@@ -140,64 +139,42 @@ export default function Index() {
     return `${label} (${config.start} - ${config.end})`;
   };
   return <PublicLayout>
-      {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden gradient-hero">
-        {/* Decorative blobs */}
-        <div className="absolute inset-0 opacity-15 pointer-events-none">
+      {/* Hero Section - Gradiente azul vibrante estilo Monterrico */}
+      <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden gradient-hero">
+        {/* Patrón decorativo */}
+        <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 right-10 w-72 h-72 bg-white/30 rounded-full blur-3xl" />
           <div className="absolute bottom-10 left-10 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl" />
         </div>
-
+        
         <div className="container relative z-10 px-4 sm:px-6">
           <div className="text-center max-w-4xl mx-auto">
-            <h1
-              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight tracking-tight text-white animate-fade-in-up"
-              style={{ animationDelay: '0s' }}
-            >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 sm:mb-6 leading-tight tracking-tight text-white">
               {t('home:hero.title')}
             </h1>
 
-            <p
-              className="text-lg sm:text-xl text-white/85 mb-12 max-w-xl mx-auto leading-relaxed animate-fade-in-up"
-              style={{ animationDelay: '0.15s' }}
-            >
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
               {t('home:hero.subtitle')}
             </p>
 
-            {/* Service cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-              {[
-                { to: '/terapeutas', Icon: User,          title: 'Individual',   sub: 'Para mí',        delay: '0.28s', accent: 'bg-blue-400/25'  },
-                { to: '/terapeutas', Icon: Heart,         title: 'Pareja',       sub: 'Para nosotros',  delay: '0.42s', accent: 'bg-rose-400/25'  },
-                { to: '/terapeutas', Icon: GraduationCap, title: 'Estudiantes',  sub: 'Para jóvenes',   delay: '0.56s', accent: 'bg-teal-400/25'  },
-              ].map(({ to, Icon, title, sub, delay, accent }) => (
-                <Link
-                  key={title}
-                  to={to}
-                  className="group relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center cursor-pointer transition-all duration-300 hover:scale-[1.04] hover:bg-white/20 hover:border-white/40 hover:shadow-[0_24px_64px_-16px_rgba(0,0,0,0.35)] animate-fade-in-up"
-                  style={{ animationDelay: delay }}
-                >
-                  <div className={cn('inline-flex items-center justify-center w-13 h-13 w-12 h-12 rounded-full mb-4 transition-transform duration-300 group-hover:scale-110', accent)}>
-                    <Icon className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-1">{title}</h3>
-                  <p className="text-sm text-white/70">{sub}</p>
-                </Link>
-              ))}
-            </div>
+            <Link to="/terapeutas">
+              <Button size="lg" variant="outline" className="gap-2 bg-white text-primary border-white hover:bg-white/90 hover:text-primary shadow-lg">
+                {t('home:hero.cta')}
+                <ArrowRight className="h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
 
         {/* Wave bottom transition */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
-          <svg
-            className="relative block w-full h-16 sm:h-20 lg:h-24"
-            viewBox="0 0 1200 120"
+          <svg 
+            className="relative block w-full h-16 sm:h-20 lg:h-24" 
+            viewBox="0 0 1200 120" 
             preserveAspectRatio="none"
           >
-            <path
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.11,141.23,111.31,221.89,91.17,299.52,71.84,257.95,68.16,321.39,56.44Z"
+            <path 
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.11,141.23,111.31,221.89,91.17,299.52,71.84,257.95,68.16,321.39,56.44Z" 
               className="fill-background"
             />
           </svg>

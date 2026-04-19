@@ -9,27 +9,21 @@ import { LanguageSelector } from './LanguageSelector';
 import logoNegro from '@/assets/logo-negro.png';
 import { cn } from '@/lib/utils';
 
-const PUBLIC_NAV = [
-  { to: '/',           label: 'Inicio',         exact: true  },
-  { to: '/terapeutas', label: 'Psicólogos',      exact: false },
-  { to: '/conocenos',  label: 'Cómo funciona',   exact: false },
-  { to: '/terapeutas', label: 'Precios',         exact: false },
-];
-
 export function PublicHeader() {
   const { t } = useTranslation('common');
   const { user, userRole, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Scroll effect detection
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const isAdmin = userRole === 'admin';
   const isTherapist = userRole === 'therapist';
   const hasStaffAccess = isAdmin || isTherapist;
@@ -39,71 +33,110 @@ export function PublicHeader() {
     navigate('/');
   };
 
-  const isActiveRoute = (path: string, exact = false) => {
-    if (exact) return location.pathname === path;
+  const mainNavItems = [
+    { to: '/', label: t('nav.home') },
+    { to: '/conocenos', label: t('nav.about') },
+    { to: '/terapeutas', label: t('nav.therapists') },
+  ];
+
+  const isActiveRoute = (path: string) => {
+    if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
   };
 
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300',
+        "sticky top-0 z-50 w-full transition-all duration-300",
         isScrolled
-          ? 'bg-background/95 backdrop-blur-xl shadow-card border-b border-border/40'
-          : 'bg-background/60 backdrop-blur-md border-b border-transparent'
+          ? "bg-background/98 backdrop-blur-lg shadow-soft border-b border-border/50"
+          : "bg-background/80 backdrop-blur-sm border-b border-transparent"
       )}
     >
-      <div className="container flex items-center justify-between h-16 lg:h-[68px]">
-
-        {/* Logo */}
+      {/* Main header row - Compacto en móvil */}
+      <div className="container flex items-center justify-between h-16 md:h-auto md:py-2">
+        {/* Logo - Más pequeño en móvil, con transición */}
         <Link to="/" className="flex items-center group flex-shrink-0">
           <img
             src={logoNegro}
             alt="Mente Livre"
-            className="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
+            className={cn(
+              "w-auto transition-all duration-300 group-hover:scale-105",
+              isScrolled ? "h-[30px] md:h-[60px] lg:h-[72px]" : "h-9 md:h-[72px] lg:h-24"
+            )}
           />
         </Link>
 
-        {/* Desktop Center Nav */}
-        <nav className="hidden md:flex items-center gap-0.5">
-          {PUBLIC_NAV.map(({ to, label, exact }) => (
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-1">
+          <Link
+            to="/"
+            className={cn(
+              "px-4 py-2 text-sm font-medium rounded-full transition-all duration-200",
+              isActiveRoute('/')
+                ? "text-primary bg-primary/10"
+                : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+            )}
+          >
+            {t('nav.home')}
+          </Link>
+          <Link
+            to="/conocenos"
+            className={cn(
+              "px-4 py-2 text-sm font-medium rounded-full transition-all duration-200",
+              isActiveRoute('/conocenos')
+                ? "text-primary bg-primary/10"
+                : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+            )}
+          >
+            {t('nav.about')}
+          </Link>
+          <Link
+            to="/terapeutas"
+            className={cn(
+              "px-4 py-2 text-sm font-medium rounded-full transition-all duration-200",
+              isActiveRoute('/terapeutas')
+                ? "text-primary bg-primary/10"
+                : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+            )}
+          >
+            {t('nav.therapists')}
+          </Link>
+          {user && (
             <Link
-              key={label}
-              to={to}
+              to="/mi-cuenta"
               className={cn(
-                'px-4 py-2 text-sm font-medium rounded-full transition-all duration-200',
-                isActiveRoute(to, exact)
-                  ? 'text-primary bg-primary/10'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                "px-4 py-2 text-sm font-medium rounded-full transition-all duration-200",
+                isActiveRoute('/mi-cuenta')
+                  ? "text-primary bg-primary/10"
+                  : "text-muted-foreground hover:text-primary hover:bg-primary/5"
               )}
             >
-              {label}
+              {t('nav.myAppointments')}
             </Link>
-          ))}
-
-          {user && hasStaffAccess && (
+          )}
+          {hasStaffAccess && (
             <Link
               to="/dashboard"
               className={cn(
-                'px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 flex items-center gap-1.5',
+                "px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 flex items-center gap-1.5",
                 isActiveRoute('/dashboard')
-                  ? 'text-primary bg-primary/10'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  ? "text-primary bg-primary/10"
+                  : "text-muted-foreground hover:text-primary hover:bg-primary/5"
               )}
             >
               <LayoutDashboard className="h-4 w-4" />
               {isAdmin ? t('nav.dashboard') : t('nav.myPanel')}
             </Link>
           )}
-
           {isAdmin && (
             <Link
               to="/admin/disponibilidad"
               className={cn(
-                'px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 flex items-center gap-1.5',
+                "px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 flex items-center gap-1.5",
                 isActiveRoute('/admin/disponibilidad')
-                  ? 'text-primary bg-primary/10'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  ? "text-primary bg-primary/10"
+                  : "text-muted-foreground hover:text-primary hover:bg-primary/5"
               )}
             >
               <Clock className="h-4 w-4" />
@@ -112,10 +145,9 @@ export function PublicHeader() {
           )}
         </nav>
 
-        {/* Desktop Right Actions */}
-        <div className="hidden md:flex items-center gap-2">
+        {/* Desktop Actions */}
+        <div className="hidden md:flex items-center gap-3">
           <LanguageSelector />
-
           {user ? (
             <>
               <Link to="/mi-cuenta">
@@ -137,20 +169,13 @@ export function PublicHeader() {
           ) : (
             <>
               <Link to="/auth">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-muted-foreground hover:text-foreground rounded-full font-medium"
-                >
-                  Iniciar sesión
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary rounded-full">
+                  {t('nav.login')}
                 </Button>
               </Link>
               <Link to="/terapeutas">
-                <Button
-                  size="sm"
-                  className="rounded-full shadow-primary btn-elevated font-semibold px-5 gap-1.5"
-                >
-                  Empezar
+                <Button size="sm" className="gap-1.5 shadow-primary rounded-full btn-elevated">
+                  {t('nav.bookAppointment')}
                   <ChevronRight className="h-4 w-4" />
                 </Button>
               </Link>
@@ -158,10 +183,10 @@ export function PublicHeader() {
           )}
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Menu */}
         <div className="flex md:hidden items-center gap-2">
           <LanguageSelector />
-          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+          <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="h-10 w-10">
                 <Menu className="h-5 w-5" />
@@ -169,39 +194,44 @@ export function PublicHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] sm:w-[320px] p-0">
               <div className="flex flex-col h-full">
-                {/* Mobile header */}
+                {/* Mobile Header */}
                 <div className="p-4 border-b">
-                  <img src={logoNegro} alt="Mente Livre" className="h-9 w-auto" />
+                  <img src={logoNegro} alt="Mente Livre" className="h-10 w-auto" />
                 </div>
 
-                {/* Mobile Nav */}
+                {/* Mobile Navigation */}
                 <nav className="flex-1 p-4 overflow-y-auto">
                   <div className="space-y-1">
-                    {PUBLIC_NAV.map(({ to, label }) => (
-                      <Link
-                        key={label}
-                        to={to}
-                        onClick={() => setMobileOpen(false)}
-                        className="flex items-center px-4 py-3 text-base font-medium rounded-xl hover:bg-muted transition-colors"
-                      >
-                        {label}
-                      </Link>
-                    ))}
-
+                    <Link
+                      to="/"
+                      className="flex items-center px-4 py-3 text-base font-medium rounded-lg hover:bg-muted transition-colors"
+                    >
+                      {t('nav.home')}
+                    </Link>
+                    <Link
+                      to="/conocenos"
+                      className="flex items-center px-4 py-3 text-base font-medium rounded-lg hover:bg-muted transition-colors"
+                    >
+                      {t('nav.about')}
+                    </Link>
+                    <Link
+                      to="/terapeutas"
+                      className="flex items-center px-4 py-3 text-base font-medium rounded-lg hover:bg-muted transition-colors"
+                    >
+                      {t('nav.therapists')}
+                    </Link>
                     {user && (
                       <>
                         <Link
                           to="/mi-cuenta"
-                          onClick={() => setMobileOpen(false)}
-                          className="flex items-center px-4 py-3 text-base font-medium rounded-xl hover:bg-muted transition-colors"
+                          className="flex items-center px-4 py-3 text-base font-medium rounded-lg hover:bg-muted transition-colors"
                         >
                           {t('nav.myAppointments')}
                         </Link>
                         {hasStaffAccess && (
                           <Link
                             to="/dashboard"
-                            onClick={() => setMobileOpen(false)}
-                            className="flex items-center gap-2 px-4 py-3 text-base font-medium text-primary rounded-xl hover:bg-primary/10 transition-colors"
+                            className="flex items-center gap-2 px-4 py-3 text-base font-medium text-primary rounded-lg hover:bg-primary/10 transition-colors"
                           >
                             <LayoutDashboard className="h-5 w-5" />
                             {isAdmin ? t('nav.dashboard') : t('nav.myPanel')}
@@ -210,8 +240,7 @@ export function PublicHeader() {
                         {isAdmin && (
                           <Link
                             to="/admin/disponibilidad"
-                            onClick={() => setMobileOpen(false)}
-                            className="flex items-center gap-2 px-4 py-3 text-base font-medium rounded-xl hover:bg-muted transition-colors"
+                            className="flex items-center gap-2 px-4 py-3 text-base font-medium rounded-lg hover:bg-muted transition-colors"
                           >
                             <Clock className="h-5 w-5" />
                             {t('nav.schedules')}
@@ -228,21 +257,21 @@ export function PublicHeader() {
                     <Button
                       onClick={handleSignOut}
                       variant="outline"
-                      className="w-full gap-2 rounded-full"
+                      className="w-full gap-2"
                     >
                       <LogOut className="h-4 w-4" />
                       {t('nav.logout')}
                     </Button>
                   ) : (
                     <>
-                      <Link to="/auth" className="block" onClick={() => setMobileOpen(false)}>
-                        <Button variant="outline" className="w-full rounded-full">
-                          Iniciar sesión
+                      <Link to="/auth" className="block">
+                        <Button variant="outline" className="w-full">
+                          {t('nav.login')}
                         </Button>
                       </Link>
-                      <Link to="/terapeutas" className="block" onClick={() => setMobileOpen(false)}>
-                        <Button className="w-full rounded-full gap-2">
-                          Empezar
+                      <Link to="/terapeutas" className="block">
+                        <Button className="w-full gap-2">
+                          {t('nav.bookAppointment')}
                           <ChevronRight className="h-4 w-4" />
                         </Button>
                       </Link>
@@ -253,8 +282,40 @@ export function PublicHeader() {
             </SheetContent>
           </Sheet>
         </div>
-
       </div>
+
+      {/* Mobile Navigation Bar - Compact pills */}
+      <nav className="md:hidden border-t border-border/40 bg-background overflow-x-auto">
+        <div className="flex items-center justify-start gap-1 px-4 py-2 min-w-max">
+          {mainNavItems.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium rounded-full transition-all duration-200 whitespace-nowrap",
+                isActiveRoute(item.to)
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+              )}
+            >
+              {item.label}
+            </Link>
+          ))}
+          {user && (
+            <Link
+              to="/mi-cuenta"
+              className={cn(
+                "px-3 py-1.5 text-sm font-medium rounded-full transition-all duration-200 whitespace-nowrap",
+                isActiveRoute('/mi-cuenta')
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+              )}
+            >
+              {t('nav.myAppointments')}
+            </Link>
+          )}
+        </div>
+      </nav>
     </header>
   );
 }
